@@ -20,10 +20,14 @@ no_index:
     - inc
     - t
 requires:
+  Acme::LOLCAT: 0
   Catalyst::Action::RenderView: 0
   Catalyst::Plugin::ConfigLoader: 0
   Catalyst::Plugin::Static::Simple: 0
+  Catalyst::Plugin::Unicode: 0
   Catalyst::Runtime: 5.90075
+  Catalyst::View::JSON: 0
+  Catalyst::View::TT: 0
   Config::General: 0
   Moose: 0
   namespace::autoclean: 0

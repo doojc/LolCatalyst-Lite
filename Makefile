@@ -13,14 +13,14 @@
 
 #     ABSTRACT => q[Catalyst based application]
 #     AUTHOR => [q[doojc,,,]]
-#     BUILD_REQUIRES => { ExtUtils::MakeMaker=>q[6.36], Test::More=>q[0.88] }
+#     BUILD_REQUIRES => { Test::More=>q[0.88], ExtUtils::MakeMaker=>q[6.36] }
 #     CONFIGURE_REQUIRES => {  }
 #     DISTNAME => q[LolCatalyst-Lite]
 #     EXE_FILES => [q[script/lolcatalyst_lite_cgi.pl], q[script/lolcatalyst_lite_create.pl], q[script/lolcatalyst_lite_fastcgi.pl], q[script/lolcatalyst_lite_server.pl], q[script/lolcatalyst_lite_test.pl]]
 #     LICENSE => q[perl]
 #     NAME => q[LolCatalyst::Lite]
 #     NO_META => q[1]
-#     PREREQ_PM => { Config::General=>q[0], Catalyst::Plugin::ConfigLoader=>q[0], Catalyst::Action::RenderView=>q[0], Test::More=>q[0.88], Catalyst::Plugin::Static::Simple=>q[0], namespace::autoclean=>q[0], Catalyst::Runtime=>q[5.90075], ExtUtils::MakeMaker=>q[6.36], Moose=>q[0] }
+#     PREREQ_PM => { namespace::autoclean=>q[0], Catalyst::Runtime=>q[5.90075], ExtUtils::MakeMaker=>q[6.36], Config::General=>q[0], Catalyst::Plugin::ConfigLoader=>q[0], Catalyst::View::TT=>q[0], Acme::LOLCAT=>q[0], Catalyst::View::JSON=>q[0], Catalyst::Plugin::Unicode=>q[0], Test::More=>q[0.88], Catalyst::Action::RenderView=>q[0], Moose=>q[0], Catalyst::Plugin::Static::Simple=>q[0] }
 #     TEST_REQUIRES => {  }
 #     VERSION => q[0.01]
 #     VERSION_FROM => q[lib/LolCatalyst/Lite.pm]
@@ -81,44 +81,46 @@ INST_MAN3DIR = blib/man3
 MAN1EXT = 1p
 MAN3EXT = 3pm
 INSTALLDIRS = site
-INSTALL_BASE = /home/doojc/perl5
 DESTDIR = 
-PREFIX = $(INSTALL_BASE)
-INSTALLPRIVLIB = $(INSTALL_BASE)/lib/perl5
+PREFIX = $(SITEPREFIX)
+PERLPREFIX = /usr
+SITEPREFIX = /usr/local
+VENDORPREFIX = /usr
+INSTALLPRIVLIB = /usr/share/perl/5.18
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = $(INSTALL_BASE)/lib/perl5
+INSTALLSITELIB = /usr/local/share/perl/5.18.2
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
-INSTALLVENDORLIB = $(INSTALL_BASE)/lib/perl5
+INSTALLVENDORLIB = /usr/share/perl5
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = $(INSTALL_BASE)/lib/perl5/x86_64-linux-gnu-thread-multi
+INSTALLARCHLIB = /usr/lib/perl/5.18
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = $(INSTALL_BASE)/lib/perl5/x86_64-linux-gnu-thread-multi
+INSTALLSITEARCH = /usr/local/lib/perl/5.18.2
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
-INSTALLVENDORARCH = $(INSTALL_BASE)/lib/perl5/x86_64-linux-gnu-thread-multi
+INSTALLVENDORARCH = /usr/lib/perl5
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
-INSTALLBIN = $(INSTALL_BASE)/bin
+INSTALLBIN = /usr/bin
 DESTINSTALLBIN = $(DESTDIR)$(INSTALLBIN)
-INSTALLSITEBIN = $(INSTALL_BASE)/bin
+INSTALLSITEBIN = /usr/local/bin
 DESTINSTALLSITEBIN = $(DESTDIR)$(INSTALLSITEBIN)
-INSTALLVENDORBIN = $(INSTALL_BASE)/bin
+INSTALLVENDORBIN = /usr/bin
 DESTINSTALLVENDORBIN = $(DESTDIR)$(INSTALLVENDORBIN)
-INSTALLSCRIPT = $(INSTALL_BASE)/bin
+INSTALLSCRIPT = /usr/bin
 DESTINSTALLSCRIPT = $(DESTDIR)$(INSTALLSCRIPT)
-INSTALLSITESCRIPT = $(INSTALL_BASE)/bin
+INSTALLSITESCRIPT = /usr/local/bin
 DESTINSTALLSITESCRIPT = $(DESTDIR)$(INSTALLSITESCRIPT)
-INSTALLVENDORSCRIPT = $(INSTALL_BASE)/bin
+INSTALLVENDORSCRIPT = /usr/bin
 DESTINSTALLVENDORSCRIPT = $(DESTDIR)$(INSTALLVENDORSCRIPT)
-INSTALLMAN1DIR = $(INSTALL_BASE)/man/man1
+INSTALLMAN1DIR = /usr/share/man/man1
 DESTINSTALLMAN1DIR = $(DESTDIR)$(INSTALLMAN1DIR)
-INSTALLSITEMAN1DIR = $(INSTALL_BASE)/man/man1
+INSTALLSITEMAN1DIR = /usr/local/man/man1
 DESTINSTALLSITEMAN1DIR = $(DESTDIR)$(INSTALLSITEMAN1DIR)
-INSTALLVENDORMAN1DIR = $(INSTALL_BASE)/man/man1
+INSTALLVENDORMAN1DIR = /usr/share/man/man1
 DESTINSTALLVENDORMAN1DIR = $(DESTDIR)$(INSTALLVENDORMAN1DIR)
-INSTALLMAN3DIR = $(INSTALL_BASE)/man/man3
+INSTALLMAN3DIR = /usr/share/man/man3
 DESTINSTALLMAN3DIR = $(DESTDIR)$(INSTALLMAN3DIR)
-INSTALLSITEMAN3DIR = $(INSTALL_BASE)/man/man3
+INSTALLSITEMAN3DIR = /usr/local/man/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
-INSTALLVENDORMAN3DIR = $(INSTALL_BASE)/man/man3
+INSTALLVENDORMAN3DIR = /usr/share/man/man3
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
 PERL_LIB =
 PERL_ARCHLIB = /usr/lib/perl/5.18
@@ -295,8 +297,7 @@ DISTVNAME = LolCatalyst-Lite-0.01
 
 PASTHRU = LIBPERL_A="$(LIBPERL_A)"\
 	LINKTYPE="$(LINKTYPE)"\
-	PREFIX="$(PREFIX)"\
-	INSTALL_BASE="$(INSTALL_BASE)"
+	PREFIX="$(PREFIX)"
 
 
 # --- MakeMaker special_targets section:
@@ -451,20 +452,14 @@ manifypods : pure_all  \
 
 EXE_FILES = script/lolcatalyst_lite_cgi.pl script/lolcatalyst_lite_create.pl script/lolcatalyst_lite_fastcgi.pl script/lolcatalyst_lite_server.pl script/lolcatalyst_lite_test.pl
 
-pure_all :: $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_server.pl $(INST_SCRIPT)/lolcatalyst_lite_create.pl $(INST_SCRIPT)/lolcatalyst_lite_test.pl $(INST_SCRIPT)/lolcatalyst_lite_fastcgi.pl
+pure_all :: $(INST_SCRIPT)/lolcatalyst_lite_server.pl $(INST_SCRIPT)/lolcatalyst_lite_test.pl $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_create.pl $(INST_SCRIPT)/lolcatalyst_lite_fastcgi.pl
 	$(NOECHO) $(NOOP)
 
 realclean ::
 	$(RM_F) \
-	  $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_server.pl \
-	  $(INST_SCRIPT)/lolcatalyst_lite_create.pl $(INST_SCRIPT)/lolcatalyst_lite_test.pl \
+	  $(INST_SCRIPT)/lolcatalyst_lite_server.pl $(INST_SCRIPT)/lolcatalyst_lite_test.pl \
+	  $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_create.pl \
 	  $(INST_SCRIPT)/lolcatalyst_lite_fastcgi.pl 
-
-$(INST_SCRIPT)/lolcatalyst_lite_cgi.pl : script/lolcatalyst_lite_cgi.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
-	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
-	$(CP) script/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
-	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
-	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
 
 $(INST_SCRIPT)/lolcatalyst_lite_server.pl : script/lolcatalyst_lite_server.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
 	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_server.pl
@@ -472,17 +467,23 @@ $(INST_SCRIPT)/lolcatalyst_lite_server.pl : script/lolcatalyst_lite_server.pl $(
 	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_server.pl
 	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_server.pl
 
-$(INST_SCRIPT)/lolcatalyst_lite_create.pl : script/lolcatalyst_lite_create.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
-	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
-	$(CP) script/lolcatalyst_lite_create.pl $(INST_SCRIPT)/lolcatalyst_lite_create.pl
-	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
-	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
-
 $(INST_SCRIPT)/lolcatalyst_lite_test.pl : script/lolcatalyst_lite_test.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
 	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_test.pl
 	$(CP) script/lolcatalyst_lite_test.pl $(INST_SCRIPT)/lolcatalyst_lite_test.pl
 	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_test.pl
 	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_test.pl
+
+$(INST_SCRIPT)/lolcatalyst_lite_cgi.pl : script/lolcatalyst_lite_cgi.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
+	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
+	$(CP) script/lolcatalyst_lite_cgi.pl $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
+	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
+	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_cgi.pl
+
+$(INST_SCRIPT)/lolcatalyst_lite_create.pl : script/lolcatalyst_lite_create.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
+	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
+	$(CP) script/lolcatalyst_lite_create.pl $(INST_SCRIPT)/lolcatalyst_lite_create.pl
+	$(FIXIN) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
+	-$(NOECHO) $(CHMOD) $(PERM_RWX) $(INST_SCRIPT)/lolcatalyst_lite_create.pl
 
 $(INST_SCRIPT)/lolcatalyst_lite_fastcgi.pl : script/lolcatalyst_lite_fastcgi.pl $(FIRST_MAKEFILE) $(INST_SCRIPT)$(DFSEP).exists $(INST_BIN)$(DFSEP).exists
 	$(NOECHO) $(RM_F) $(INST_SCRIPT)/lolcatalyst_lite_fastcgi.pl
@@ -539,9 +540,9 @@ realclean_subdirs :
 # Delete temporary files (via clean) and also delete dist files
 realclean purge ::  clean realclean_subdirs
 	- $(RM_F) \
-	  $(FIRST_MAKEFILE) $(MAKEFILE_OLD) 
+	  $(MAKEFILE_OLD) $(FIRST_MAKEFILE) 
 	- $(RM_RF) \
-	  MYMETA.yml $(DISTVNAME) 
+	  $(DISTVNAME) MYMETA.yml 
 
 
 # --- MakeMaker metafile section:
@@ -849,10 +850,14 @@ ppd :
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Catalyst based application</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>doojc,,,</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Acme::LOLCAT" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Action::RenderView" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::ConfigLoader" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Static::Simple" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE VERSION="5.90075" NAME="Catalyst::Runtime" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Plugin::Unicode" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Runtime" VERSION="5.90075" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::View::JSON" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::View::TT" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Config::General" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Moose::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="namespace::autoclean" />' >> $(DISTNAME).ppd
@@ -907,20 +912,20 @@ checkdeps ::
 	$(PERL) Makefile.PL --checkdeps
 
 installdeps ::
-	$(NOECHO) $(NOOP)
+	$(PERL) Makefile.PL --config= --installdeps=Acme::LOLCAT,0,Catalyst::View::JSON,0,Catalyst::Plugin::Unicode,0
 
 installdeps_notest ::
-	$(NOECHO) $(NOOP)
+	$(PERL) Makefile.PL --config=notest,1 --installdeps=Acme::LOLCAT,0,Catalyst::View::JSON,0,Catalyst::Plugin::Unicode,0
 
 upgradedeps ::
-	$(PERL) Makefile.PL --config= --upgradedeps=Test::More,0.88,Catalyst::Runtime,5.90075,Catalyst::Plugin::ConfigLoader,0,Catalyst::Plugin::Static::Simple,0,Catalyst::Action::RenderView,0,Moose,0,namespace::autoclean,0,Config::General,0
+	$(PERL) Makefile.PL --config= --upgradedeps=Acme::LOLCAT,0,Catalyst::View::JSON,0,Catalyst::Plugin::Unicode,0,Test::More,0.88,Catalyst::Runtime,5.90075,Catalyst::Plugin::ConfigLoader,0,Catalyst::Plugin::Static::Simple,0,Catalyst::Action::RenderView,0,Moose,0,namespace::autoclean,0,Config::General,0,Catalyst::View::TT,0
 
 upgradedeps_notest ::
-	$(PERL) Makefile.PL --config=notest,1 --upgradedeps=Test::More,0.88,Catalyst::Runtime,5.90075,Catalyst::Plugin::ConfigLoader,0,Catalyst::Plugin::Static::Simple,0,Catalyst::Action::RenderView,0,Moose,0,namespace::autoclean,0,Config::General,0
+	$(PERL) Makefile.PL --config=notest,1 --upgradedeps=Acme::LOLCAT,0,Catalyst::View::JSON,0,Catalyst::Plugin::Unicode,0,Test::More,0.88,Catalyst::Runtime,5.90075,Catalyst::Plugin::ConfigLoader,0,Catalyst::Plugin::Static::Simple,0,Catalyst::Action::RenderView,0,Moose,0,namespace::autoclean,0,Config::General,0,Catalyst::View::TT,0
 
 listdeps ::
-	@$(PERL) -le "print for @ARGV" 
+	@$(PERL) -le "print for @ARGV" Acme::LOLCAT Catalyst::View::JSON Catalyst::Plugin::Unicode
 
 listalldeps ::
-	@$(PERL) -le "print for @ARGV" Test::More Catalyst::Runtime Catalyst::Plugin::ConfigLoader Catalyst::Plugin::Static::Simple Catalyst::Action::RenderView Moose namespace::autoclean Config::General
+	@$(PERL) -le "print for @ARGV" Acme::LOLCAT Catalyst::View::JSON Catalyst::Plugin::Unicode Test::More Catalyst::Runtime Catalyst::Plugin::ConfigLoader Catalyst::Plugin::Static::Simple Catalyst::Action::RenderView Moose namespace::autoclean Config::General Catalyst::View::TT
 

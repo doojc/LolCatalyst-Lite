@@ -4,7 +4,7 @@
       "doojc,,,"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.98, CPAN::Meta::Converter version 2.142690",
+   "generated_by" : "Module::Install version 1.12, CPAN::Meta::Converter version 2.142690",
    "license" : [
       "perl_5"
    ],
@@ -15,8 +15,8 @@
    "name" : "LolCatalyst-Lite",
    "no_index" : {
       "directory" : [
-         "t",
-         "inc"
+         "inc",
+         "t"
       ]
    },
    "prereqs" : {
@@ -33,10 +33,14 @@
       },
       "runtime" : {
          "requires" : {
+            "Acme::LOLCAT" : "0",
             "Catalyst::Action::RenderView" : "0",
             "Catalyst::Plugin::ConfigLoader" : "0",
             "Catalyst::Plugin::Static::Simple" : "0",
+            "Catalyst::Plugin::Unicode" : "0",
             "Catalyst::Runtime" : "5.90075",
+            "Catalyst::View::JSON" : "0",
+            "Catalyst::View::TT" : "0",
             "Config::General" : "0",
             "Moose" : "0",
             "namespace::autoclean" : "0"
@@ -44,5 +48,10 @@
       }
    },
    "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
    "version" : "0.01"
 }
