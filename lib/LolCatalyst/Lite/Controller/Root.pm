@@ -30,9 +30,6 @@ The root page (/)
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-
-    # Hello World
-    $c->response->body( $c->welcome_message );
 }
 
 =head2 default
@@ -47,13 +44,38 @@ sub default :Path {
     $c->response->status(404);
 }
 
+
+sub translate :Local
+{
+	my ($self, $c) = @_;
+	my $lol = $c->req->body_params->{lol};	# only for a POST request
+	#	$c->req->params->{lol} qould catch GET or POST
+	#	$c->req->query_params would catch GET params only
+	
+	$c->stash(
+		lol => $lol,
+		result => $c->model('Translate')->translate($lol),
+		template => 'index.tt',
+	);
+}
+
 =head2 end
 
 Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : ActionClass('RenderView') 
+{
+	my ($self, $c) = @_;
+	my $errors = scalar @{$c->error};
+	if ($errors)
+	{
+		$c->res->status(500);
+		$c->res->body('Internal server error');
+		$c->clear_errors;
+	}
+}
 
 =head1 AUTHOR
 
