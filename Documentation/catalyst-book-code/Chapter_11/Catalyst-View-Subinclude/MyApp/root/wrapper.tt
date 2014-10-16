@@ -1,0 +1,8 @@
+[% IF  ! subreq  %]
+<html><body>
+ <pre>
+ #### BEGIN WRAPPER
+ [% content %]
+ #### END WRAPPER
+ </pre>
+[% ELSE; content; END %]

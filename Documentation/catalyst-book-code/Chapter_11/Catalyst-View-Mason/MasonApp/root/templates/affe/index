@@ -1,0 +1,9 @@
+<%args>
+$things
+</%args>
+
+<ul>
+% for my $thing (@{ $things }) {
+  <li><% $thing %></li>
+% }
+</ul>

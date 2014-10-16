@@ -1,0 +1,2 @@
+<h2>The Affe controller</h2>
+% $m->call_next;

@@ -1,0 +1,5 @@
+<h3>SneakyCat is thinking....</h3>
+[% FOREACH idea IN ideas %]
+<p class="thought secret_[% idea.secret %]">[% idea.text %]<br/>
+<span class="when">-- added by [% idea.added_by %] on [% idea.added %]</span></p>
+[% END %]

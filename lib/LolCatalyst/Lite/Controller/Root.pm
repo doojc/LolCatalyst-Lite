@@ -49,14 +49,22 @@ sub translate :Local
 {
 	my ($self, $c) = @_;
 	my $lol = $c->req->body_params->{lol};	# only for a POST request
-	#	$c->req->params->{lol} qould catch GET or POST
+	#	$c->req->params->{lol} could catch GET or POST
 	#	$c->req->query_params would catch GET params only
 	
 	$c->stash(
 		lol => $lol,
-		result => $c->model('Translate')->translate($lol),
+		result => $c->model('Translator')->translate($lol),
 		template => 'index.tt',
 	);
+}
+
+
+sub translate_service : Local {
+    my ($self, $c) = @_;
+    $c->authenticate;
+    $c->forward('translate');
+    $c->stash->{current_view} = 'Service';
 }
 
 =head2 end

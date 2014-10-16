@@ -1,0 +1,7 @@
+=widget Sent
+
+=for layout widget
+
+Email sent!
+
+=cut

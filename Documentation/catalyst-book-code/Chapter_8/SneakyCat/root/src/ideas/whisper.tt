@@ -1,0 +1,11 @@
+<form action="whisper" method="post" accept-charset="utf-8">
+    <label for="secret">Tell SneakyCat</label>
+    <select name="secret" id="type" size="1">
+        <option value="no">an idea</option>
+        <option value="yes">a secret</option>
+    </select>
+    <br/>
+    <input type="text" name="whisper" value="" id="wisper"/>
+    <br/>
+    <p><input type="submit" value="Continue &rarr;"></p>
+</form>
